@@ -1,0 +1,19 @@
+.nav-wrapper{
+  padding-left:70px;
+  padding-right:40px
+}
+
+a.anchor {
+    display: block;
+    position: relative;
+    top: -60px;
+}
+
+/*SCROLLSPY*/
+nav ul a.active {
+    font-weight: 500;
+    padding-left: 18px;
+    border-bottom: 2px solid black;
+  }
+
+

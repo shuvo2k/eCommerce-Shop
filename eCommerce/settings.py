@@ -122,7 +122,7 @@ STATIC_URL = '/static/'
 
 #static local setup
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static_local_project')
+    os.path.join(BASE_DIR, 'static_local')
 ]
 
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static_cdn')

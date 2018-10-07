@@ -1,0 +1,71 @@
+{% extends "../base.html" %}
+{% load staticfiles %}
+{% block stylesheet %}
+    <style>
+      
+      .row.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+.row.flex-container div {
+    width: 200px;
+}
+[class*=" imghvr-"] figcaption, [class^=imghvr-] figcaption {
+    background-color: #135796a8;
+    
+}
+    </style>
+{% endblock stylesheet %}
+{% block content %}
+<!--SLIDER-->
+
+ <div class="parallax-container">
+      <div class="parallax">
+<img src="{% static 'image/quranback.jpg' %}"></div>
+    </div>
+      
+
+<!--CARDS-->
+<div class="divider"></div>
+<a id="cards1" class="anchor"></a>
+  <div class="section scrollspy">
+    <h3 class="center-align">Cards</h3>
+<div class="container" id="cards">
+<div class="row flex-container">
+
+
+    
+        {% for product in products %}
+
+          <div class="card hoverable">
+            <figure class="imghvr-push-up">
+            <div class="card-image">
+              <img src="{{product.image.url}}">
+             <figcaption>
+ <p>lorem</p>
+    </figcaption>
+            </div>
+          </figure>
+
+            <div class="card-content">
+               <span class="card-title"><a href="{{product.get_absolute_url}}">{{product.title}}</a></span>
+              <!-- <p>{{product.description}}</p> -->
+              <p>{{product.price}}</p>
+            </div>
+            <div class="card-action">
+              <a href="#">This is a link</a>
+            </div>
+          </div>
+        
+
+        {% endfor %}
+      </div>
+  </div>
+</div>
+
+</div>
+    
+	  
+
+{% endblock content %}
+	

@@ -1,0 +1,61 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="{%static 'css/materialize.min.css'%}">
+<link rel="stylesheet" href="{%static 'css/animate.css'%}">
+<link rel="stylesheet" href="{%static 'css/imagehover.min.css'%}">
+<link rel="stylesheet" href="{%static 'css/owl.carousel.min.css'%}">
+<link rel="stylesheet" href="{%static 'css/owl.theme.default.min.css'%}">
+<link rel="stylesheet" href="{%static 'css/style.css'%}">
+{% block stylesheet %}
+    
+{% endblock stylesheet %}
+<style>
+	body{
+		font-family: 'Roboto Slab', serif;
+
+	}
+</style>
+</head>
+
+<body>
+	
+  <!-- material css -->
+  <div class="navbar-fixed scrollspy" id="#home" >
+<nav>
+   <div class="nav-wrapper ">
+      <a href="#" class="brand-logo">Logo</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#cards1">Cards</a></li>
+        <li><a  href="#form1">Contact1</a></li>
+        
+      </ul>
+    </div>
+  </nav>
+</div>
+
+
+       
+      
+  <!-- material -->
+	{% block content %}
+	    
+	{% endblock content %}
+
+	
+	<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js" integrity="sha384-kW+oWsYx3YpxvjtZjFXqazFpA7UP/MbiY4jvs+RWZo2+N94PFZ36T6TFkc9O3qoB" crossorigin="anonymous"></script>
+	<script src="{%static 'js/jquery-3.3.1.min.js'%}"></script>
+	<script src="{%static 'js/materialize.min.js'%}"></script>
+	<script src="{%static 'js/owl.carousel.min.js'%}"></script>
+<script src="{%static 'js/main.js'%}"></script>
+
+</body>
+</html>
