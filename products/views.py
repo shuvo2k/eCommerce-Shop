@@ -71,7 +71,7 @@ class ProductDetailView(View):
 			raise Http404("Product Does Not Exists.")
 
 		context = {
-			'detail':queryset,
+			'query':queryset,
 		}
 		return render(request, self.template_name, context)
 
@@ -85,3 +85,53 @@ class ProductDetailView(View):
 		return None
 
 '''
+
+
+class GetItembyCategory(View):
+	def get(self, request, slug):
+		pass
+
+
+
+class BooksByCategory(View):
+	def get(self, request):
+		pass
+
+
+class BooksByWriters(View):
+	def get(self, request):
+		pass
+
+
+class BooksByPublishers(View):
+	def get(self, request):
+		pass
+
+
+
+
+
+
+
+class PopularBooks(View):
+	def get(self, request):
+		pass
+
+
+class AllToys(View):
+	def get(self, request):
+		pass
+
+class Blog(View):
+	def get(self, request):
+		pass
+"""
+class Login(View):
+	def get(self, request):
+		pass
+
+class Logout(View):
+	def get(self, request):
+		pass
+
+"""

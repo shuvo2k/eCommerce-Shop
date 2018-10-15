@@ -7,8 +7,9 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('products.urls')),
-]
+    path('bookfinder/', include('bookfinder.urls', namespace='bookfinder')),
+    path('', include('products.urls', namespace='products')),
+    ]
 
 
 #static file link

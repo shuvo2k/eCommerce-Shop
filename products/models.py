@@ -4,6 +4,8 @@ from django.template.defaultfilters import slugify
 from django.db.models.signals import pre_save
 from .utils import unique_slug_generator
 from django.template.defaultfilters import slugify
+from django.urls import reverse 
+from django.db.models import Q
 
 
 
@@ -35,6 +37,18 @@ def upload_image_path(instance, filename):
 	return "{final_filename}".format(publisher=publisher,final_filename=final_filename)
 
 
+def upload_pdf_path(instance, filename):
+	writer = instance.writer.name
+	publisher = instance.publisher.name
+	category = instance.category.name
+	title = instance.title
+	ext = get_filename_ext(filename)
+	
+	final_filename = '{publisher}-{category}-{writer}-{title}{ext}'.format(publisher=publisher, category=category, writer=writer, title=title, ext=ext)
+	#print(final_filename)
+	return "pdf/{final_filename}".format(publisher=publisher,final_filename=final_filename)
+
+
 
 def get_filename_ext(filepath):
 	base_name = os.path.basename(filepath)
@@ -54,7 +68,24 @@ class category(models.Model):
 
 
 #custom queryset manager
+class ProductQuerySet(models.query.QuerySet):
+	def active(self):
+		return self.filter(active=True)
+
+
+	def search(self, query):
+		lookups = (Q(title__icontains=query) | Q(writer__name__icontains=query))
+		return self.filter(lookups)
+
+
+
 class ProductManager(models.Manager):
+	def get_queryset(self):
+		return ProductQuerySet(self.model, using=self._db)
+
+	def all(self):
+		return self.get_queryset().active()
+
 	def get_by_id(self, id):
 		qs = self.get_queryset().filter(id=id)
 		if qs.count() == 1:
@@ -63,6 +94,10 @@ class ProductManager(models.Manager):
 
 	def popular(self):
 		return self.get_queryset().filter(popular=True)
+
+	#search function from model manager goes to bookfindre.views.py 
+	def search(self, query):
+		return self.get_queryset().active().search(query)
 
 
 
@@ -76,8 +111,8 @@ class product(models.Model):
 	previous_price = models.DecimalField(decimal_places=2, max_digits=10, null=True, blank=True)
 	price = models.DecimalField(decimal_places=2, max_digits=10)
 	image = models.ImageField(upload_to=upload_image_path)
-	pdf_image1 = models.ImageField(upload_to=upload_image_path, null=True, blank=True)
-	pdf_image2 = models.ImageField(upload_to=upload_image_path, null=True, blank=True)
+	multiple_image = models.FileField(upload_to=upload_image_path, null=True, blank=True)
+	pdf = models.FileField(upload_to=upload_pdf_path, null=True, blank=True)
 	popular = models.BooleanField(default=False)
 	active = models.BooleanField(default=True)
 	new = models.BooleanField(default=False)
@@ -88,11 +123,12 @@ class product(models.Model):
 	category = models.ForeignKey(category, on_delete=models.CASCADE)
 
 	objects = ProductManager()
-
+	'''
 	def get_absolute_url(self):
-		return "/detail/{slug}".format(slug=self.slug)
+		#return "/detail/{slug}".format(slug=self.slug)
+		return reverse('products:details', kwargs={"slug":self.slug})
 
-
+	'''
 	def __str__(self):
 		return self.title 
 

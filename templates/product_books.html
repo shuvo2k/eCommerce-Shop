@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+    <div class="container">
+    	<div class="row">
+    		{% if request.GET.q %}
+    		<div class="col-12">
+    			Result for <b>{{request.GET.q}}</b>
+    		<hr>
+    		</div>
+
+    		  
+    		
+    		{% endif %}
+			
+
+
+
+    	</div>
+    	<div class="row">
+    		<div class="col-md-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt iure mollitia ea hic debitis temporibus nemo perspiciatis animi velit id natus minima accusamus quod, deleniti quos cumque ratione necessitatibus inventore?</div>
+    		<div class="col-md-9 flex-all">
+    			{% for product in all %}
+    			    
+    			<div class="card individual-product all-product">
+                            <div class="card-img-top">
+                                <div class="card-hoverable">
+                                    <div class="card-image">
+                                        <img class="img-fluid" src="{{product.image.url}}">
+
+                                        </div>
+                                        <div class="overlay">
+                                            <div class="text">Hello World</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="product-title">
+                                        <span class="card-title"><a href="{%url 'products:details' slug=product.slug%}">{{product.title}}</a></span>
+                                    </div>
+                                    <div class="product_writer"><span></span><a href="#">{{product.writer.name}}</a></div>
+                                    <div class="product-price">
+                                        <span><del>{{product.previous_price}} <span>৳</span></del></span><span>{{product.price}} <span>৳</span></span>
+                                    </div>
+                                    <button type="button" class="btn btn-outline-danger">ক্রয় করুন</button>
+                                </div>
+                            </div>
+    			{% endfor %}
+    		 </div>
+    		</div>
+			
+			
+    	</div>
+
+
+
+
+{% endblock content %}

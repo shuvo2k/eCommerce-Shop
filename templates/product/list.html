@@ -1,71 +1,91 @@
 {% extends "../base.html" %}
 {% load staticfiles %}
 {% block stylesheet %}
-    <style>
-      
-      .row.flex-container {
-    display: flex;
-    flex-wrap: wrap;
-}
-.row.flex-container div {
-    width: 200px;
-}
-[class*=" imghvr-"] figcaption, [class^=imghvr-] figcaption {
-    background-color: #135796a8;
-    
-}
-    </style>
 {% endblock stylesheet %}
 {% block content %}
 <!--SLIDER-->
+<div class="container">
+    <div class="row">
+        <div class="popular-heading">
+            <h3><span><i class="fas fa-shopping-cart"></i> নতুন প্রকাশিত বই</span> </h3>
+        </div>
+        <div class="owl-carousel owl-theme owl-loaded">
+            <div class="owl-stage-outer">
+                <div class="owl-stage">
+                    {% for product in products %}
+                    <div class="owl-item">
+                        <div class="card individual-product">
+                            <div class="card-img-top">
+                                <div class="card-hoverable">
+                                    <div class="card-image">
+                                        <img class="img-fluid" src="{{product.image.url}}">
 
- <div class="parallax-container">
-      <div class="parallax">
-<img src="{% static 'image/quranback.jpg' %}"></div>
+                                        </div>
+                                        <div class="overlay">
+                                            <div class="text">Hello World</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="product-title">
+                                        <span class="card-title"><a href="{%url 'products:details' slug=product.slug%}">{{product.title}}</a></span>
+                                    </div>
+                                    <div class="product_writer"><span></span><a href="#">{{product.writer.name}}</a></div>
+                                    <div class="product-price">
+                                        <span><del>{{product.previous_price}} <span>৳</span></del></span><span>{{product.price}} <span>৳</span></span>
+                                    </div>
+                                    <button type="button" class="btn btn-outline-danger">ক্রয় করুন</button>
+                                </div>
+                            </div>
+                        </div>{% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="view-all-book"><button>সকল নতুন প্রকাশিত বই</button></div>
+        </div>
     </div>
-      
-
-<!--CARDS-->
-<div class="divider"></div>
-<a id="cards1" class="anchor"></a>
-  <div class="section scrollspy">
-    <h3 class="center-align">Cards</h3>
-<div class="container" id="cards">
-<div class="row flex-container">
 
 
-    
-        {% for product in products %}
+    <!--  -->
 
-          <div class="card hoverable">
-            <figure class="imghvr-push-up">
-            <div class="card-image">
-              <img src="{{product.image.url}}">
-             <figcaption>
- <p>lorem</p>
-    </figcaption>
+<div class="container">
+    <div class="row">
+        <div class="popular-heading">
+            <h3><span><i class="fas fa-shopping-cart"></i> নতুন প্রকাশিত বই</span> </h3>
+        </div>
+        <div class="owl-carousel owl-theme owl-loaded">
+            <div class="owl-stage-outer">
+                <div class="owl-stage">
+                    {% for product in products %}
+                    <div class="owl-item">
+                        <div class="card individual-product">
+                            <div class="card-img-top">
+                                <div class="card-hoverable">
+                                    <div class="card-image">
+                                        <img class="img-fluid" src="{{product.image.url}}">
+
+                                        </div>
+                                        <div class="overlay">
+                                            <div class="text">Hello World</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="product-title">
+                                        <span class="card-title"><a href="{%url 'products:details' slug=product.slug%}">{{product.title}}</a></span>
+                                    </div>
+                                    <div class="product_writer"><span></span><a href="#">{{product.writer.name}}</a></div>
+                                    <div class="product-price">
+                                        <span><del>{{product.previous_price}} <span>৳</span></del></span><span>{{product.price}} <span>৳</span></span>
+                                    </div>
+                                    <button type="button" class="btn btn-outline-danger">ক্রয় করুন</button>
+                                </div>
+                            </div>
+                        </div>{% endfor %}
+                    </div>
+                </div>
             </div>
-          </figure>
-
-            <div class="card-content">
-               <span class="card-title"><a href="{{product.get_absolute_url}}">{{product.title}}</a></span>
-              <!-- <p>{{product.description}}</p> -->
-              <p>{{product.price}}</p>
-            </div>
-            <div class="card-action">
-              <a href="#">This is a link</a>
-            </div>
-          </div>
-        
-
-        {% endfor %}
-      </div>
-  </div>
-</div>
-
-</div>
-    
-	  
-
-{% endblock content %}
-	
+            <div class="view-all-book"><button>সকল নতুন প্রকাশিত বই</button></div>
+        </div>
+    </div>
+    {% endblock content %}
