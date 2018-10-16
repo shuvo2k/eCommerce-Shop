@@ -88,4 +88,50 @@
             <div class="view-all-book"><button>সকল নতুন প্রকাশিত বই</button></div>
         </div>
     </div>
+
+
+<div class="container">
+    <div class="row nav-links">
+  <ul class="nav nav-tabs" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" href="#profile" role="tab" data-toggle="tab">profile</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#buzz" role="tab" data-toggle="tab">buzz</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#references" role="tab" data-toggle="tab">references</a>
+  </li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-pan">
+  <div role="tabpanel" id="profile">
+    
+              <ul>{% for c in category_query %}
+                  
+              <li><a href="#">{{c.name}}</a></li>
+              {% endfor %}</ul>
+         
+  </div>
+  <div role="tabpanel"  id="buzz">
+   
+               <ul>{% for w in writer_query %}
+                  
+              <li><a href="#">{{w.name}}</a></li>
+              {% endfor %}</ul>
+    
+
+  </div>
+  <div role="tabpanel" id="references">
+      
+    
+               <ul>{% for p in publisher_query %}
+                  
+              <li><a href="#">{{p.name}}</a></li>
+              {% endfor %}</ul>
+      
+    </div>
+</div>
+
     {% endblock content %}

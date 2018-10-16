@@ -72,7 +72,7 @@ class ProductQuerySet(models.query.QuerySet):
 	def active(self):
 		return self.filter(active=True)
 
-
+		
 	def search(self, query):
 		lookups = (Q(title__icontains=query) | Q(writer__name__icontains=query))
 		return self.filter(lookups)

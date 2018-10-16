@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import View
-from . models import product 
+from . models import product, writer, publisher, category 
 from django.http import Http404
 
 
@@ -13,10 +13,18 @@ class ProductListView(View):
 	def get(self, request):
 		queryset_all = product.objects.all()
 		queryset_popular = product.objects.popular()
+		
+		writer_query = writer.objects.all()
+		publisher_query = publisher.objects.all()
+		category_query = category.objects.all()
+
 
 		context = {
 			'products':queryset_all,
 			'popular':queryset_popular,
+			'writer_query':writer_query,
+			'publisher_query':publisher_query,
+			'category_query':category_query
 		}
 		return render(request, self.template_name, context)
 	
