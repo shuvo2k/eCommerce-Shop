@@ -3,7 +3,7 @@ from django.views import View
 from . models import product, writer, publisher, category 
 from django.http import Http404
 
-
+from carts.models import Cart
 
 #CLASS based product view 
 class ProductListView(View):
@@ -78,8 +78,12 @@ class ProductDetailView(View):
 		if queryset is None:
 			raise Http404("Product Does Not Exists.")
 
+		#cart 
+		cart_obj, new_obj = Cart.objects.new_or_get(request)
+
 		context = {
 			'query':queryset,
+			'cart_obj':cart_obj,
 		}
 		return render(request, self.template_name, context)
 

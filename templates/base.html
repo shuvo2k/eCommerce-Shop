@@ -9,7 +9,7 @@
 {%url 'products:blog' as blog%}
 {%url 'products:login' as login%}
 {%url 'products:logout' as logout%}
-
+{%url 'cart:home' as cart_url%}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,7 +30,7 @@
 </head>
 
 <body>
-  <!-- top section -->
+    <!-- top section -->
     <div class="head-banner">
         <div class="container">
             <div class="row">
@@ -43,73 +43,61 @@
                             <a href="#"><i class="fab fa-twitter-square"></i></a>
                             <a href="#"><i class="fab fa-google-plus-square"></i></a>
                         </span>
-                    </div>
                 </div>
-
             </div>
         </div>
     </div>
+  
     <!-- search section -->
-  <div class="container">
-      <div class="row search">
-          <div class="col-md-2"><img src="{%static 'image/logo.jpg'%}" alt="logo"></div>
-          <div class="col-md-8 search-field">
-                <form action="{%url 'bookfinder:test' %}" method="GET">
-        <input type="text" name="q" value="{{request.GET.q}}" placeholder=" বইয়ের নাম ও লেখক দিয়ে অনুসন্ধান করুন">
-        
-        <input type="submit" class="search-btn" value="অনুসন্ধান">
-    </form>
-          </div>
-          <div class="col-md-2 mobile-call">
-              <span><p>মোবাইলে অর্ডার দিন</p><p>0176-2052120</p></span>
-              <span class="call-logo"><i class="fas fa-headset"></i></span>
-          </div>
-      </div>
-  </div>
-    <!-- navbar -->
-    <header>
-        <!-- End most top info -->
-        <nav class="navbar  navbar-expand-lg navbar-light top-navbar" data-toggle="sticky-onscroll">
-            <div class="container">
-                
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-start" id="navbarSupportedContent">
-                    <ul class="navbar-nav top-nav-item">
-
-                        
-
-
-
-
-
-                        <li class="nav-item {%if request.path == all_products%} active{%endif%}">
-                            <a class="nav-link" href="{{all_products}}">হোম </a>
-                        </li>
-                        <li class="nav-item {%if request.path == all_books%} active{%endif%}">
-                            <a class="nav-link" href="{{all_books}}">সকল বই</a>
-                        </li>
-                        <li class="nav-item {%if request.path == popuar_books%} active{%endif%}">
-                            <a class="nav-link" href="{{popuar_books}}">জনপ্রিয় বই</a>
-                        </li>
-                        <li class="nav-item {%if request.path == book_category%} active{%endif%}">
-                            <a class="nav-link" href="{{book_category}}">বিষয় সমূহ</a>
-                        </li>
-                        <li class="nav-item {%if request.path == writers%} active{%endif%}">
-                            <a class="nav-link" href="{{writers}}">লেখক</a>
-                        </li>
-                        <li class="nav-item {%if request.path == publishers%} active{%endif%}">
-                            <a class="nav-link" href="{{
+    <div class="container">
+        <div class="row search">
+            <div class="col-md-2"><img src="{%static 'image/logo.jpg'%}" alt="logo"></div>
+                <div class="col-md-8 search-field">
+                    <form action="{%url 'bookfinder:test' %}" method="GET">
+                        <input type="text" name="q" value="{{request.GET.q}}" placeholder=" বইয়ের নাম ও লেখক দিয়ে অনুসন্ধান করুন">
+                        <input type="submit" class="search-btn" value="অনুসন্ধান">
+                    </form>
+                </div>
+                <div class="col-md-2 mobile-call">
+                    <span><p>মোবাইলে অর্ডার দিন</p><p>0176-2052120</p></span>
+                    <span class="call-logo"><i class="fas fa-headset"></i></span>
+                </div>
+            </div>
+        </div>
+        <!-- navbar -->
+        <header>
+            <!-- End most top info -->
+            <nav class="navbar  navbar-expand-lg navbar-light top-navbar" data-toggle="sticky-onscroll">
+                <div class="container">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-start" id="navbarSupportedContent">
+                        <ul class="navbar-nav top-nav-item">
+                            <li class="nav-item {%if request.path == all_products%} active{%endif%}">
+                                <a class="nav-link" href="{{all_products}}">হোম </a>
+                            </li>
+                            <li class="nav-item {%if request.path == all_books%} active{%endif%}">
+                                <a class="nav-link" href="{{all_books}}">সকল বই</a>
+                            </li>
+                            <li class="nav-item {%if request.path == popuar_books%} active{%endif%}">
+                                <a class="nav-link" href="{{popuar_books}}">জনপ্রিয় বই</a>
+                            </li>
+                            <li class="nav-item {%if request.path == book_category%} active{%endif%}">
+                                <a class="nav-link" href="{{book_category}}">বিষয় সমূহ</a>
+                            </li>
+                            <li class="nav-item {%if request.path == writers%} active{%endif%}">
+                                <a class="nav-link" href="{{writers}}">লেখক</a>
+                            </li>
+                            <li class="nav-item {%if request.path == publishers%} active{%endif%}">
+                                <a class="nav-link" href="{{
 publishers}}">প্রকাশক</a>
-                        </li>
-                     
-
-                        <li class="nav-item {%if request.path ==  toys%} active{%endif%}">
-                            <a class="nav-link" href="{{ toys}}">খেলনা </a>
-                        </li>
-                        <li class="nav-item {%if request.path == blog%} active{%endif%}"><a href="{{blog}}" class="nav-link">ব্লগ</a></li>
-                      <!--
+                            </li>
+                            <li class="nav-item {%if request.path ==  toys%} active{%endif%}">
+                                <a class="nav-link" href="{{ toys}}">খেলনা </a>
+                            </li>
+                            <li class="nav-item {%if request.path == blog%} active{%endif%}"><a href="{{blog}}" class="nav-link">ব্লগ</a></li>
+                            <!--
                        {% if request.user.is_authenticated %}
                         <li class="nav-item {%if request.path == login%} active{%endif%}"><a href="{{login}}" class="nav-link">ব্লগ</a></li>
                             {% else %}
@@ -118,31 +106,142 @@ publishers}}">প্রকাশক</a>
                       
                       {% endif %}
                        -->
-
-                    </ul>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <!-- End top header-->
+        <div class="banner">
+            <div class="container">
+                <div class="row">
+                    <div class="banner-content">
+                        {% block banner-text %}
+                        WAFI (وفي) মুলত একটি অ্যারাবিক শব্দ । শব্দটির মানে হল বিশ্বস্ত। আমরা এমন একটি ই-কমার্স প্লাটফর্ম ডেভেলপ করছি যেখান থেকে আপনি গুনগত মান সম্পন্ন প্রোডাক্ট এবং সার্ভিস অপ্রয়োজনীয় বেশী অর্থ খরচ না করেই পেতে পারেন।
+                        {% endblock banner-text %}
+                    </div>
                 </div>
             </div>
-        </nav>
-    </header>
-    <!-- End top header-->
-
-<div class="banner">
-    <div class="container">
-        <div class="row">
-            <p class="banner-content">WAFI (وفي) মুলত একটি অ্যারাবিক শব্দ । শব্দটির মানে হল বিশ্বস্ত। আমরা এমন একটি ই-কমার্স প্লাটফর্ম ডেভেলপ করছি যেখান থেকে আপনি গুনগত মান সম্পন্ন প্রোডাক্ট এবং সার্ভিস অপ্রয়োজনীয় বেশী অর্থ খরচ না করেই পেতে পারেন।</p>
         </div>
-    </div>
+        <a href="{{cart_url}}">
+<div class="cart-bag">
+    <p class="circle">o</p>
+    <p class="item">{{request.session.cart_items}}</p>
+    <p class="price">{{request.session.cart_total}}.00 ৳</p>
 </div>
+</a>
 
 
-    {% block content %}
-    {% endblock content %}
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js" integrity="sha384-kW+oWsYx3YpxvjtZjFXqazFpA7UP/MbiY4jvs+RWZo2+N94PFZ36T6TFkc9O3qoB" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <script src="{%static 'js/owl.carousel.min.js'%}"></script>
-    <script src="{%static 'js/main.js'%}"></script>
+        {% block content %}
+        {% endblock content %}
+
+  
+        <!-- footer -->
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 blog-post">
+                        <h2>সাম্প্রতিক পোস্ট</h2>
+
+
+                        <div class="post_meta">
+                            <span class="date-time">
+                                        <span>17</span>
+                                        <br>
+                            <span>Sep</span>
+                            </span>
+                          <div class="blog-post-detail">
+                                <div class="entry-title">
+                                <a href="#" rel="bookmark">
+                                        পারফিউমেন্সের প্রোডাক্ট-লিস্ট [ মূল্য সহ ] </a>
+                            </div>
+                            <p class="entry-desc">
+                                √√√ রিফ্রেশমেন্টঃ [ মোস্ট পপুলার ক্যাটাগরি ]
+                                * পোলো ব্লু [...] </p>
+                          </div>
+                        </div>
+                        <div class="post_meta">
+                            <span class="date-time">
+                                        <span>17</span>
+                                        <br>
+                            <span>Sep</span>
+                            </span>
+                          <div class="blog-post-detail">
+                                <div class="entry-title">
+                                <a href="#" rel="bookmark">
+                                        পারফিউমেন্সের প্রোডাক্ট-লিস্ট [ মূল্য সহ ] </a>
+                            </div>
+                            <p class="entry-desc">
+                                √√√ রিফ্রেশমেন্টঃ [ মোস্ট পপুলার ক্যাটাগরি ]
+                                * পোলো ব্লু [...] </p>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 important-links">
+                        <h2>প্রয়োজনীয় লিংক</h2>
+                        <ul>
+                            <li><a href="">যোগাযোগ করুন</a></li>
+                            <li><a href="">ব্লগ</a></li>
+                            <li><a href="">শপিং ব্যাগ</a></li>
+                            <li><a href="">আপনার পছন্দের তালিকা</a></li>
+                            <li><a href="">প্রশ্নোত্তর</a></li>
+                            <li><a href="">কিভাবে কেনাকাটা করবেন ?</a></li>
+                            <li><a href="">নীতিমালা</a></li>
+                            <li><a href="">শর্তাবলী</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 important-topics">
+                        <h2>তথ্যভাণ্ডার</h2>
+                        <div class="topic-individual">
+                            <a href="">ইসলামী গেম</a>
+                            <a href="">হালাল বিনোদন</a>
+                            <a href="">beye</a>
+                            <a href="">Doll</a>
+                            <a href="">jibon</a>
+                            <a href="">Leadership Lessons: From the Life of Rasoolullah</a>
+                            <a href="">marriage</a>
+                            <a href="">tatto</a>
+                            <a href="">totto</a>
+                            <a href="">অসামান্য গুনাবলী</a>
+                            <a href="">আদর্শ</a>
+                            <a href="">জাস্টিস মুফতী মুহাম্মদ তকী উসমানী</a>
+                            <a href="">জীবন</a>
+                            <a href="">তত্ত্ব ছেড়ে জীবনে</a>
+                            <a href="">দাম্পত্য</a>
+                            <a href="">পারফিউম অয়েল</a>
+                            <a href="">বিয়ে</a>
+                            <a href="">বিশ্বাস</a>
+                            <a href="">রাসুলুল্লাহ (সঃ)</a>
+                            <a href="">লক্ষ্য</a>
+                            <a href="">সংসার</a>
+                            <a href="">সাফল্য</a>
+                            <a href="">সিয়ান পাবলিকেশন</a>
+                            <a href="">স্বামী-স্ত্রী</a> 
+                        </div>
+                    </div>
+                    <div class="col-md-3 newslatter">
+                        <h2>নিউজ লেটার</h2>
+                        <p>সর্বশেষ খবর জানতে ইমেইল প্রদান করুন</p>
+                        <form action="" class="form-group">
+                            <input type="email" placeholder="Enter your email ..." class="form-control">
+                            <br>
+                            <button class="btn btn-default">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">কপিরাইট © ২০১৬ Wafilife। ডিজাইন Wafi Solutions</div>
+        </div>
+
+
+
+        <!-- scripts -->
+        <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js" integrity="sha384-kW+oWsYx3YpxvjtZjFXqazFpA7UP/MbiY4jvs+RWZo2+N94PFZ36T6TFkc9O3qoB" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <script src="{%static 'js/owl.carousel.min.js'%}"></script>
+        <script src="{%static 'js/main.js'%}"></script>
 </body>
 
 </html>

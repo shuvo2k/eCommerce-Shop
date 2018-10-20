@@ -1,11 +1,14 @@
 from django.contrib import admin
 from . models import product, category, publisher, writer
-
+import goslate
+gs = goslate.Goslate()
 
 
 class productModel(admin.ModelAdmin):
     list_display = ["__str__", "writer","category", "publisher", "price"]
     search_fields = ["__str__", "category", "publisher", "writer"]
+   
+    prepopulated_fields = {'slug':('title',)}
     class Meta:
         model = product
 

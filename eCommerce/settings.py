@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'products',
     'bookfinder',
     'carts',
+    'orders',
 ]
 
 MIDDLEWARE = [
@@ -106,6 +107,12 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
+LANGUAGES = [
+ ('bn', 'Bengali'),
+ ('en', 'English'),
+ ]
+
+ 
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'

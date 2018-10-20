@@ -1,4 +1,71 @@
 {% extends "../base.html" %}
+
+
+    {% block banner-text %}
+    <div class="cart-banner">
+<h2>শপিং ব্যাগ</h2>
+<p> <a href="{% url 'products:product_list'%}">হোম </a> / শপিং ব্যাগ</p>
+</div>
+{% endblock banner-text %}
+
 {% block content %}
+<div class="container">
     
+<div class="row">
+	{% if cart.products.exists %}
+	    
+<table class="table table-bordered cart-table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">পণ্য</th>
+                <th scope="col">মূল্য</th>
+                <th scope="col">পরিমাণ</th>
+                <th scope="col">সর্বমোট</th>
+                <th scope="col">বাতিল করুন</th>
+            </tr>
+        </thead>
+        <tbody class="cart-body">
+            {% for product in cart.products.all %}
+                <tr>
+                <td><img src="{{product.image.url}}" alt="product image"> <a href="{%url 'products:details' slug=product.slug%}">{{product.title}}</a></td>
+                <td>{{product.price}}</td>
+                <td>quantity</td>
+                <td>{{product.price}} * quantity</td>
+                <td>{% include 'carts/update_cart.html' with product=product cart=cart in_cart=True %}
+	</td>
+            </tr>
+            
+            {% endfor %}
+        </tbody>
+
+    </table>
+    <div class="cart-btn">
+    	<button class="btn btn-default">আরও বই ক্রয় করুন</button>
+        <button class="btn btn-danger">আপডেট করুন</button>
+
+    </div>
+<div class="total">
+	
+        <p>total {{cart.total}}</p>
+	<p>subtotal {{cart.sub_total}}</p>
+
+</div>
+	    {%else%}
+	<p class="lead">আপনার শপিং ব্যাগ এখন খালি
+
+</p>
+<button class="btn btn-default">
+শপে ফিরে যান</button>
+
+
+
+
+
+	
+	{% endif %}
+
+
+
+</div>
+</div>
 {% endblock content %}

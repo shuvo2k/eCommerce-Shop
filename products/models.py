@@ -2,10 +2,11 @@ import os
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.db.models.signals import pre_save
-from .utils import unique_slug_generator
+#from eCommerce.utils import unique_slug_generator
 from django.template.defaultfilters import slugify
 from django.urls import reverse 
 from django.db.models import Q
+
 
 
 
@@ -123,12 +124,12 @@ class product(models.Model):
 	category = models.ForeignKey(category, on_delete=models.CASCADE)
 
 	objects = ProductManager()
-	'''
+	
 	def get_absolute_url(self):
 		#return "/detail/{slug}".format(slug=self.slug)
 		return reverse('products:details', kwargs={"slug":self.slug})
 
-	'''
+	
 	def __str__(self):
 		return self.title 
 
